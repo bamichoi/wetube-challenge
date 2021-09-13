@@ -1,0 +1,23 @@
+{
+  "name": "wetube-challenge",
+  "version": "1.0.0",
+  "description": "The best way to watch a videos",
+  "scripts": {
+    "dev": "nodemon --exec babel-node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://https://github.com/bamichoi/wetube-challenge.git"
+  },
+  "author": "Beomseok Choi",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/preset-env": "^7.15.6",
+    "nodemon": "^2.0.12"
+  }
+}
