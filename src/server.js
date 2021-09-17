@@ -1,28 +1,25 @@
-import express from "express";
+import express, { Router } from "express";
 import morgan from "morgan";
+import globalRouter from "./routers/globalRouter";
+import userRouter from "./routers/userRouter";
+import videoRouter from "./routers/videoRouter";
 
 // Create Server Application
 const PORT = 4000;
 
 const app = express();
-const logger = morgan("dev");
+
 // Middleware
+const logger = morgan("dev");
+app.use(logger); //app.use() 는 global middleware를 만들어준다. 순서는 use가 먼저오고 그 다음에 get이 와야한다.
 
+// Routers
 
+app.use("/", globalRouter);
+app.use("/videos", videoRouter);
+app.use("/users", userRouter);
 
 // Configure Server Application
-
-const handleHome = (req, res) => {
-    return res.send("<h1>I still love you</h1>");
-}
-
-const handleLogin = (req, res) =>{
-    return res.send("Login here");
-}
-
-app.use(logger); //app.use() 는 global middleware를 만들어준다. 순서는 use가 먼저오고 그 다음에 get이 와야한다.
-app.get("/", handleHome);
-app.get("/login", handleLogin);
 
 
 // Open Server Application
