@@ -1,54 +1,70 @@
-let videos = [{
-    title:"Frist Video",
-    rating:5,
-    comments:2,
-    createdAt:"2 minutes ago",
-    views:1,
-    id:1,
-},
-{
-    title:"Second Video",
-    rating:5,
-    comments:2,
-    createdAt:"2 minutes ago",
-    views:59,
-    id:2,
-}]
+import Video from "../models/Video";
 
-export const trending = (req, res) => {
-    return res.render("home", {pageTitle : "Home", videos});
+
+export const home = async (req, res) => {
+    try {
+        const videos = await Video.find({})
+        return res.render("home", {pageTitle : "Home", videos });
+    } catch {
+        return res.render("server-error", {error});
+    }
 }
-export const watch = (req, res) => {
+
+export const watch = async (req, res) => {
     const { id } = req.params;
-    const video = videos[id-1]
+    const video = await Video.findById(id);
+    if (!video) {
+        return res.render("404", {pageTitle : "Video not found"})  
+    } 
     return res.render("watch", {pageTitle : `Watching ${video.title}`, video});
+
 } 
-export const getEdit = (req, res) => {
+export const getEdit = async (req, res) => {
     const { id } = req.params;
-    const video = videos[id-1]
+    const video = await Video.findById(id);
+    if (!video) {
+        return res.render("404", {pageTitle : "Video not found"})  
+    } 
     res.render("edit", {pageTitle : `Editing ${video.title}`, video})
 } // export 를 붙여주면 한 모듈이 동시에 여러개를 export를 할 수 있다.
-export const postEdit = (req, res) => {
+
+export const postEdit = async (req, res) => {
     const { id } = req.params;
-    const { title } = req.body;
-    videos[id-1].title = title
-    return res.redirect(`/videos/${id}`)
+    const { title, description, hashtags } = req.body;
+    const video = await Video.exists({_id: id});
+    if (!video) {
+        return res.render("404", {pageTitle : "Video not found"})  
+    } 
+    try { 
+        await Video.findByIdAndUpdate(id, {
+        title, 
+        description, 
+        hashtags,
+    }); 
+        return res.redirect(`/videos/${id}`);
+    }
+    catch(error) {
+        console.log(error)
+        return res.redirect('/')
+    }
 }
 
 export const getUpload = (req, res) => {
     return res.render("upload", { pageTitle: "Upload Video" });
   };
   
-export const postUpload = (req, res) => {
-    const { title } = req.body;
-    const newVideo = {
-      title,
-      rating: 0,
-      comments: 0,
-      createdAt: "just now",
-      views: 0,
-      id: videos.length + 1,
-    };
-    videos.push(newVideo);
-    return res.redirect("/");
+export const postUpload = async (req, res) => {
+    const { title, description, hashtags } = req.body;
+    try { 
+        await Video.create({
+            title,
+            description,
+            hashtags: hashtags.split(",").map(word => (word.startsWith('#') ? word : `#${word}`)),
+        })
+        return res.redirect("/");
+    }  catch(error) {
+        console.log(error)
+        return res.render("upload", { pageTitle: "Upload Video", errorMessage: error._message });
+    }
+    
   };

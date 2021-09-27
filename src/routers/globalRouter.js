@@ -1,10 +1,10 @@
 import express from "express";
-import { trending }from "../controllers/videoController" // export 는 변수,함수 이름을 그대로 써야한다.
+import { home }from "../controllers/videoController" // export 는 변수,함수 이름을 그대로 써야한다.
 import { join, login } from "../controllers/userController"
 
 const globalRouter = express.Router();
 
-globalRouter.get("/", trending); // app.get() 하던것처럼 router에 url과 함수 연결.
+globalRouter.get("/", home); // app.get() 하던것처럼 router에 url과 함수 연결.
 globalRouter.get("/join", join);
 globalRouter.get("/login", login);
 
