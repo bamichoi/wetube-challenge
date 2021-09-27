@@ -1,6 +1,5 @@
 import Video from "../models/Video";
 
-
 export const home = async (req, res) => {
     try {
         const videos = await Video.find({})
@@ -39,8 +38,8 @@ export const postEdit = async (req, res) => {
         await Video.findByIdAndUpdate(id, {
         title, 
         description, 
-        hashtags,
-    }); 
+        hashtags: Video.formatHashtags(hashtags)
+    })
         return res.redirect(`/videos/${id}`);
     }
     catch(error) {
@@ -59,7 +58,7 @@ export const postUpload = async (req, res) => {
         await Video.create({
             title,
             description,
-            hashtags: hashtags.split(",").map(word => (word.startsWith('#') ? word : `#${word}`)),
+            hashtags: Video.formatHashtags(hashtags)
         })
         return res.redirect("/");
     }  catch(error) {
