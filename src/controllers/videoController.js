@@ -13,7 +13,7 @@ export const watch = async (req, res) => {
     const { id } = req.params;
     const video = await Video.findById(id);
     if (!video) {
-        return res.render("404", {pageTitle : "Video not found"})  
+        return res.status(404).render("404", {pageTitle : "Video not found"})  
     } 
     return res.render("watch", {pageTitle : `Watching ${video.title}`, video});
 
@@ -22,7 +22,7 @@ export const getEdit = async (req, res) => {
     const { id } = req.params;
     const video = await Video.findById(id);
     if (!video) {
-        return res.render("404", {pageTitle : "Video not found"})  
+        return res.status(404).render("404", {pageTitle : "Video not found"})  
     } 
     res.render("edit", {pageTitle : `Editing ${video.title}`, video})
 } // export 를 붙여주면 한 모듈이 동시에 여러개를 export를 할 수 있다.
@@ -63,7 +63,7 @@ export const postUpload = async (req, res) => {
         return res.redirect("/");
     }  catch(error) {
         console.log(error)
-        return res.render("upload", { pageTitle: "Upload Video", errorMessage: error._message });
+        return res.status(400).render("upload", { pageTitle: "Upload Video", errorMessage: error._message });
     }
     
   };
