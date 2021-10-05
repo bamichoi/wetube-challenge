@@ -4,6 +4,7 @@ import { join, postJoin, login, postLogin } from "../controllers/userController"
 
 const rootRouter = express.Router();
 
+
 rootRouter.get("/", home); // app.get() 하던것처럼 router에 url과 함수 연결.
 rootRouter.route("/join").get(join).post(postJoin);
 rootRouter.route("/login").get(login).post(postLogin);
