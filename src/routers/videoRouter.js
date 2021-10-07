@@ -1,6 +1,6 @@
 import express from "express";
 import { watch, getEdit, postEdit, getUpload, postUpload, deleteVideo } from "../controllers/videoController"
-import { uploadThumbnail, uploadVideo } from "../middlewares";
+import { uploadThumbnail, uploadVideo, upload } from "../middlewares";
 
 const videoRouter = express.Router();
 
@@ -9,7 +9,7 @@ videoRouter.route("/:id([0-9a-f]{24})/edit").get(getEdit).post(uploadThumbnail.s
 videoRouter.route("/:id([0-9a-f]{24})/delete").get(deleteVideo);
 
 videoRouter.route("/upload").get(getUpload)
-.post(uploadVideo.single("thumbnail"), uploadVideo.single("video"), postUpload);
+.post(upload.fields([ { name: "thumbnail" }, { name: "video" }]), postUpload);
 
 
 export default videoRouter; 
