@@ -1,12 +1,13 @@
 import User from "../models/User";
 import bcrypt from "bcrypt";
 
-export const join = (req, res) => res.render("join", { pageTitle: "Create Account"});
+export const join = (req, res) => res.render("join", { pageTitle: "Join us"});
+
 export const postJoin = async (req, res) => {
     const { name, username, email, password, password2, location } = req.body;
-    const pageTitle = "Create Account"
+    const pageTitle = "Join us"
     if (password !== password2 ) {
-        return res.status(400).render("join", { pageTitle, errorMessage:"Passwords do not match."})
+        return res.status(400).render("join", { pageTitle, errorMessage:"Password does not match."})
     }
     const exists = await User.exists({$or: [{username}, {email}] });
     if (exists) {
@@ -27,7 +28,9 @@ export const postJoin = async (req, res) => {
 
     return res.redirect("/login");
 }
+
 export const login = (req, res) => res.render("Login", {  pageTitle: "Login" });
+
 export const postLogin = async (req, res) => {
     const { username, password } = req.body;
     const pageTitle = "Login";
@@ -44,7 +47,15 @@ export const postLogin = async (req, res) => {
     req.session.user = user;
     return res.redirect("/")
 }
+
+export const profile = async(req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    res.render("Profile", { pageTitle : "Profile", user });
+}
+
+
 export const edit = (req, res) => res.send("Edit user");
 export const remove = (req, res) => res.send("Delete user");
 export const logout = (req, res) => res.send("Logout");
-export const profile = (req, res) => rew.send("Profile");
+

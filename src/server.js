@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
@@ -14,9 +15,10 @@ app.set("views", process.cwd() + "/src/views");
 app.use(logger); //app.use() 는 global middleware를 만들어준다. 순서는 use가 먼저오고 그 다음에 get이 와야한다.
 app.use(express.urlencoded({extended : true }));
 app.use(session({
-    secret: "Hello!",
-    resave: true,
-    saveUninitialized: true,
+    secret: process.env.COOKIE_SECRET,   
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
 }));
 app.use(localMiddleware);
 app.use("/uploads", express.static("uploads"));

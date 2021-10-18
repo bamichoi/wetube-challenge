@@ -2,9 +2,12 @@ extends base
 
 block content
     block content
-    if errorMessage
-        span=errorMessage
+    
     div#auth_wrapper
+        if errorMessage
+            span
+                i(class="fas fa-exclamation-triangle")  
+                span  #{errorMessage}
         div#auth_container 
             div#auth_title
                 h1 LOG-IN

@@ -20,9 +20,6 @@ const storage = multer.diskStorage({ destination : (req, file, cb) => {
 
 export const upload = multer({ storage });
 
-
-
-
 export const uploadThumbnail = multer({ dest : "uploads/thumbnails/", limits: { fileSize: 3000000 } });
 export const uploadVideo = multer({ dest : "uploads/videos/", limits: { fileSize: 10000000 } });
 

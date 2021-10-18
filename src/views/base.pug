@@ -12,7 +12,7 @@ html(lang="ko")
                         div
                             img(src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetdrawings.com%2Fvectors%2Fpopcorn-vector-png-23.png&f=1&nofb=1")
                             h1 No Spoiler
-                        h2 The container of the movie trailers
+                        h2 but only trailer
                 div#side-bar_auth
                     if !locals.loggedIn
                             div
@@ -23,17 +23,26 @@ html(lang="ko")
                                 a(href="/login")
                                     i(class="fas fa-ticket-alt")
                                     span  Login
-                    else 
+                    else    
+    
                             div
-                                a(href="/logout") Logout
+                                a(href=`/users/${loggedInUser._id}`) 
+                                        i(class="fas fa-id-badge")
+                                        span   Profile 
+
+                            div
+                                a(href="/logout")
+                                        i(class="fas fa-sign-in-alt")
+                                        span  Logout
                 
 
                 nav 
                     ul
                         li
                             a(href="/videos/upload") Upload
+                                  
                         li
-                            a(href="/videos/") Trailers
+                            a(href="/videos/") Trailers  
                         li 
                             a(href="/search") Search
                 include partials/footer

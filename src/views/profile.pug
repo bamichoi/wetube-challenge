@@ -1,0 +1,26 @@
+extends base
+
+block content
+
+    div#profile_wrapper
+        div#profile_container
+            h1 Profile
+            hr
+            div(id="profile_info")
+                div(id="profile_avatar" style=`background-image:url(${loggedInUser.avatar});`)
+                ul
+                    li Nickname: #{user.username}
+                    li Name: #{user.name}
+                    li E-mail: #{user.email}
+            hr
+
+            div#profile_message #{user.bio}
+        
+        div#profile_modify
+
+            div 
+                i(class="fas fa-pencil-alt")    Update Profile
+            
+            div 
+                i(class="fas fa-key")   Change Password
+                

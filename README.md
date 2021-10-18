@@ -22,7 +22,7 @@ Videos router
 
 Wetube Challenge
 
-- [ ] User Authentication (Login / Create Account)   
+- [x] User Authentication (Login / Create Account)   
 - [ ] Edit Profile / Change Password
 - [ ] Video Upload
 - [ ] Video Search
@@ -30,3 +30,5 @@ Wetube Challenge
 - [ ] Watch Video
 - [ ] Javascript Video Player
 - [ ] Comment Section + Code Challenge
+
+- user avatar
