@@ -17,3 +17,16 @@ Videos router
 /videos/:id/edit -> Edit Video
 /videos/:id/delete -> Delete Video
 /videos/upload -> Upload Video
+
+
+
+Wetube Challenge
+
+- [ ] User Authentication (Login / Create Account)   
+- [ ] Edit Profile / Change Password
+- [ ] Video Upload
+- [ ] Video Search
+- [ ] Video Edit
+- [ ] Watch Video
+- [ ] Javascript Video Player
+- [ ] Comment Section + Code Challenge

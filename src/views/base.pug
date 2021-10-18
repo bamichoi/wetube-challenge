@@ -1,30 +1,46 @@
 doctype html 
 html(lang="ko")
     head
-        title #{pageTitle} | Wetube 
-        link(rel="stylesheet" href="https://unpkg.com/mvp.css")
+        title #{pageTitle} | No Spoiler
         link(rel="stylesheet" href="/assets/css/styles.css")
+        link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous")
     body
-        header
-            h1=pageTitle
-            nav 
-                ul
-                    li
-                        a(href="/videos/upload") Upload Video 
-                    li 
-                        a(href="/") Home
-                    li 
-                        a(href="/search") Search
+        div#wrapper
+            header#side-bar
+                a(href="/")
+                    div#side-bar_title
+                        div
+                            img(src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetdrawings.com%2Fvectors%2Fpopcorn-vector-png-23.png&f=1&nofb=1")
+                            h1 No Spoiler
+                        h2 The container of the movie trailers
+                div#side-bar_auth
                     if !locals.loggedIn
-                        li 
-                            a(href="/join") Join
-                        li 
-                            a(href="/login") Login
+                            div
+                                a(href="/join") 
+                                        i(class="fas fa-sign-in-alt")
+                                        span  Join
+                            div 
+                                a(href="/login")
+                                    i(class="fas fa-ticket-alt")
+                                    span  Login
                     else 
-                        li 
-                            a(href="/logout") Logout
+                            div
+                                a(href="/logout") Logout
+                
 
-        main 
-            block content
-    include partials/footer
-    script(src="/assets/js/main.js")
+                nav 
+                    ul
+                        li
+                            a(href="/videos/upload") Upload
+                        li
+                            a(href="/videos/") Trailers
+                        li 
+                            a(href="/search") Search
+                include partials/footer
+                        
+
+            main
+                block content
+            script(src="/assets/js/main.js")
+            block scripts
+            

@@ -3,16 +3,20 @@ extends base
 block content
     if errorMessage
         span=errorMessage
-    form(method="POST")
-        input(name="name", type="text", required, placeholder="name")
-        input(name="email", type="email", required, placeholder="email")
-        input(name="username", type="text", required, placeholder="username")
-        input(name="password", type="password", required, placeholder="password")
-        input(name="password2", type="password", required, placeholder="password2")
-        input(name="location", type="text", required, placeholder="location")
-        input(type="submit", value="Join")
+    div#auth_wrapper
+        div#auth_container 
+            div#auth_title
+                h1 JOIN US
+            form(method="POST")
+                input(name="name", type="text", required, placeholder="name")
+                input(name="email", type="email", required, placeholder="email")
+                input(name="username", type="text", required, placeholder="username")
+                input(name="password", type="password", required, placeholder="password")
+                input(name="password2", type="password", required, placeholder="password2")
+                input(type="submit", value="Join")
     
-    hr
-    div 
-        span Already have an account?
-        a(href="/login") Log in now &rarr;
+            div 
+                span Already have an account?  
+                a(href="/login")
+                    i(class="fas fa-sign-in-alt")
+                            span  Login now!
