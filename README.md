@@ -24,7 +24,7 @@ Wetube Challenge
 
 - [x] User Authentication (Login / Create Account)   
 - [x] Edit Profile
-- [ ] Change Password
+- [x] Change Password
 - [ ] Video Upload
 - [ ] Video Search
 - [ ] Video Edit
@@ -32,4 +32,4 @@ Wetube Challenge
 - [ ] Javascript Video Player
 - [ ] Comment Section + Code Challenge
 
-- user avatar
+- 사용하지 않는 AVATAR 삭제 

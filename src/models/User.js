@@ -12,7 +12,6 @@ const userSchema = new mongoose.Schema({
 
 userSchema.pre('save', async function() {
     this.password = await bycrpt.hash(this.password, 5);
-    console.log(this.password)
 });
 
 const User = mongoose.model("User", userSchema);

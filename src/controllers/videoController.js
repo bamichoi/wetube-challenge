@@ -25,7 +25,7 @@ export const getEdit = async (req, res) => {
         return res.status(404).render("404", {pageTitle : "Video not found"})  
     } 
     res.render("edit", {pageTitle : `Editing ${video.title}`, video})
-} // export 를 붙여주면 한 모듈이 동시에 여러개를 export를 할 수 있다.
+} 
 
 export const postEdit = async (req, res) => {
     const { id } = req.params;

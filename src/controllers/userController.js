@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 export const join = (req, res) => res.render("join", { pageTitle: "Join us"});
 
 export const postJoin = async (req, res) => {
-    const { name, username, email, password, password2, location } = req.body;
+    const { name, username, email, password, password2 } = req.body;
     const pageTitle = "Join us"
     if (password !== password2 ) {
         return res.status(400).render("join", { pageTitle, errorMessage:"Password does not match."})
@@ -95,6 +95,28 @@ export const postEdit = async (req, res) => {
     }
 }
 
+export const getChangePassword = (req, res) => {
+    return res.render("change-password", { pageTitle : "Change password"});
+}
 
+export const postChangePassword = async (req, res) => {
+    const { 
+        session: { 
+            user : { _id, password } 
+        }, 
+        body: { currentPassword, newPassword, newPassword2 }, 
+    } = req;
+    const ok = await bcrypt.compare(currentPassword, password);
+    if (!ok) {
+        return res.status(400).render("change-password", { pageTitle : "Change password", errorMessage: "Current Password is wrong."});
+    }
+    if (newPassword !== newPassword2) {
+        return res.status(400).render("change-password", { pageTitle : "Change password", errorMessage: "Password does not match."});
+    }
+    const user = await User.findById(_id);
+    user.password = newPassword
+    user.save()
+    return res.redirect("/users/logout")
+}
 
 
