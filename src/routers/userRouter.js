@@ -1,12 +1,11 @@
 import express from "express";
-import { edit, remove, logout, profile} from "../controllers/userController";
-
+import { getEdit, postEdit, logout, profile} from "../controllers/userController";
+import { loginOnlyMiddleware } from "../middlewares";
 const userRouter = express.Router();
 
-userRouter.get("/logout", logout);
-userRouter.get("/edit", edit);
-userRouter.get("/delete", remove);
+userRouter.get("/logout", loginOnlyMiddleware, logout);
 userRouter.get("/:id", profile);
+userRouter.route("/:id/edit").all(loginOnlyMiddleware).get(getEdit).post(postEdit);
 
 
 export default userRouter;

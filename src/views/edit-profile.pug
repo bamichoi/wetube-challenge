@@ -1,0 +1,20 @@
+extends base.pug
+
+    
+block content
+   div.profile_wrapper
+        div(class="profile_container update-form")
+            h1 Update Profile
+            hr
+            div(class="profile_info")
+                div(class="profile_avatar" style=`background-image:url(${loggedInUser.avatar});`)
+            form(method="POST" enctype="multipart/form-data")
+                label(for="avatar") Avatar
+                input(type="file", id="avatar", name="avatar", accept="image/*")
+                label(for="name") Name
+                input(placeholder="Name", id="name" required, type="text", name="name", value=loggedInUser.name)
+                label(for="email") Email
+                input(placeholder="Email", id="email", required, type="text", name="email", value=loggedInUser.email)
+                label(for="bio") Bio
+                textarea(placeholder="bio", id="bio" required, name="bio") #{loggedInUser.bio}
+                input(value="save", type="submit")

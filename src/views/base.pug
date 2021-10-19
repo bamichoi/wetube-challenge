@@ -31,15 +31,16 @@ html(lang="ko")
                                         span   Profile 
 
                             div
-                                a(href="/logout")
+                                a(href="/users/logout")
                                         i(class="fas fa-sign-in-alt")
                                         span  Logout
                 
 
                 nav 
                     ul
-                        li
-                            a(href="/videos/upload") Upload
+                        if locals.loggedIn
+                            li
+                                a(href="/videos/upload") Upload
                                   
                         li
                             a(href="/videos/") Trailers  

@@ -31,6 +31,7 @@ export const postEdit = async (req, res) => {
     const { id } = req.params;
     const { title, description, hashtags } = req.body;
     const { file } = req;
+    console.log(req.body);
     const video = await Video.findById(id);
     if (!video) {
         return res.render("404", {pageTitle : "Video not found"})  
@@ -42,7 +43,7 @@ export const postEdit = async (req, res) => {
         description, 
         hashtags: Video.formatHashtags(hashtags)
     })
-        console.log(req.file);
+        console.log(req.file); //undefined ?
         return res.redirect(`/videos/${id}`);
     }
     catch(error) {

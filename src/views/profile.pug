@@ -2,12 +2,12 @@ extends base
 
 block content
 
-    div#profile_wrapper
-        div#profile_container
+    div.profile_wrapper
+        div.profile_container
             h1 Profile
             hr
-            div(id="profile_info")
-                div(id="profile_avatar" style=`background-image:url(${loggedInUser.avatar});`)
+            div(class="profile_info")
+                div(class="profile_avatar" style=`background-image:url(${loggedInUser.avatar});`)
                 ul
                     li Nickname: #{user.username}
                     li Name: #{user.name}
@@ -17,10 +17,13 @@ block content
             div#profile_message #{user.bio}
         
         div#profile_modify
-
-            div 
-                i(class="fas fa-pencil-alt")    Update Profile
+            a(href=`/users/${loggedInUser._id}/edit`)
+                div 
+                    i(class="fas fa-pencil-alt")    
+                    span Update Profile
             
-            div 
-                i(class="fas fa-key")   Change Password
+            a(href="")
+                div 
+                    i(class="fas fa-key")     
+                    span Change Password
                 

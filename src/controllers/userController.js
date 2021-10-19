@@ -19,7 +19,6 @@ export const postJoin = async (req, res) => {
             username,
             email,
             password,
-            location,
         })
     } catch(error) {
         return res.status(400).render("join", { pageTitle, errorMessage: error._message });
@@ -48,14 +47,44 @@ export const postLogin = async (req, res) => {
     return res.redirect("/")
 }
 
-export const profile = async(req, res) => {
+export const logout = (req, res) => {
+    req.session.destroy();
+    res.redirect("/")
+};
+
+export const profile = async (req, res) => {
     const { id } = req.params;
     const user = await User.findById(id);
-    res.render("Profile", { pageTitle : "Profile", user });
+    return res.render("Profile", { pageTitle : "Profile", user });
 }
 
 
-export const edit = (req, res) => res.send("Edit user");
-export const remove = (req, res) => res.send("Delete user");
-export const logout = (req, res) => res.send("Logout");
+export const getEdit = (req, res) => {
+    return res.render("edit-profile", { pageTitle : "Edit Profile"})
+}
+
+export const postEdit = async (req, res) => {
+    const { 
+        session: { user : { _id } }, 
+        body: { name, email, bio }, 
+        file,
+    } = req;
+    console.log(req.body)
+    const user = await User.findById(_id);
+    try {
+        await User.findByIdAndUpdate(_id, {
+            avatar : file ? file.path : user.avatar,
+            name,
+            email,
+            bio,    
+        })
+        return res.redirect(`/users/${_id}`)
+    }
+    catch(error) {
+        return res.redirect('/') //에러 띄우기
+    }
+}
+
+
+
 
