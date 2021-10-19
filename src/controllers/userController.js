@@ -65,11 +65,13 @@ export const getEdit = (req, res) => {
 
 export const postEdit = async (req, res) => {
     const { 
-        session: { user : { _id } }, 
+        session: { 
+            user : { _id } 
+        }, 
         body: { name, email, bio }, 
         file,
     } = req;
-    console.log(req.body)
+    console.log(req.file)
     const user = await User.findById(_id);
     try {
         await User.findByIdAndUpdate(_id, {
@@ -78,6 +80,14 @@ export const postEdit = async (req, res) => {
             email,
             bio,    
         })
+        req.session.user = {
+            ...req.session.user,
+            avatar : file ? file.path : user.avatar,
+            name,
+            email,
+            bio,  
+
+        }
         return res.redirect(`/users/${_id}`)
     }
     catch(error) {

@@ -23,7 +23,8 @@ Videos router
 Wetube Challenge
 
 - [x] User Authentication (Login / Create Account)   
-- [ ] Edit Profile / Change Password
+- [x] Edit Profile
+- [ ] Change Password
 - [ ] Video Upload
 - [ ] Video Search
 - [ ] Video Edit

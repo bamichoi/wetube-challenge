@@ -7,7 +7,7 @@ block content
             h1 Profile
             hr
             div(class="profile_info")
-                div(class="profile_avatar" style=`background-image:url(${loggedInUser.avatar});`)
+                div(class="profile_avatar" style=`background-image:url(${ "/" + user.avatar });`)
                 ul
                     li Nickname: #{user.username}
                     li Name: #{user.name}
@@ -16,14 +16,15 @@ block content
 
             div#profile_message #{user.bio}
         
-        div#profile_modify
-            a(href=`/users/${loggedInUser._id}/edit`)
-                div 
-                    i(class="fas fa-pencil-alt")    
-                    span Update Profile
-            
-            a(href="")
-                div 
-                    i(class="fas fa-key")     
-                    span Change Password
+        if `${user._id}` === `${loggedInUser._id}`
+            div#profile_modify
+                a(href=`/users/${loggedInUser._id}/edit`)
+                    div 
+                        i(class="fas fa-pencil-alt")    
+                        span Update Profile
+                
+                a(href="")
+                    div 
+                        i(class="fas fa-key")     
+                        span Change Password
                 
