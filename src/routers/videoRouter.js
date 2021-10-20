@@ -9,7 +9,7 @@ videoRouter.get("/:id([0-9a-f]{24})", watch);
 videoRouter.route("/:id([0-9a-f]{24})/edit")
     .all(loginOnlyMiddleware)
     .get(getEdit)
-    .post(uploadThumbnail.single("thumbnail"), postEdit);
+    .post(upload.fields([ { name: "thumbnail" }, { name: "video" }]), postEdit);
 videoRouter.route("/:id([0-9a-f]{24})/delete")
     .all(loginOnlyMiddleware)
     .get(deleteVideo);

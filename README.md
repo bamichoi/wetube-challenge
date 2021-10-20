@@ -25,11 +25,12 @@ Wetube Challenge
 - [x] User Authentication (Login / Create Account)   
 - [x] Edit Profile
 - [x] Change Password
-- [ ] Video Upload
-- [ ] Video Search
-- [ ] Video Edit
+- [x] Video Upload
+- [x] Video Search
+- [x] Video Edit
 - [ ] Watch Video
 - [ ] Javascript Video Player
 - [ ] Comment Section + Code Challenge
 
 - 사용하지 않는 AVATAR 삭제 
+- 비디오레코드 허용안됬을때 핸들링

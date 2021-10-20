@@ -85,6 +85,7 @@
       margin-bottom: 0.7rem;
       border: none;
       border-bottom: 0.1rem solid black;
+      outline: none;
     }
     textarea {
       height: 4rem;
@@ -103,4 +104,17 @@
 
 .update-form {
   height: 35rem;
+}
+
+.changePassword-form {
+  height: 25rem;
+  form {
+    margin-top: 4rem;
+    input {
+      margin-bottom: 2rem;
+    }
+    input:last-child {
+      margin-top: 1rem;
+    }
+  }
 }

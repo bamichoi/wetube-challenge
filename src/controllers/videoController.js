@@ -24,7 +24,7 @@ export const getEdit = async (req, res) => {
     if (!video) {
         return res.status(404).render("404", {pageTitle : "Video not found"})  
     } 
-    res.render("edit", {pageTitle : `Editing ${video.title}`, video})
+    res.render("edit-video", {pageTitle : `Editing ${video.title}`, video})
 } 
 
 export const postEdit = async (req, res) => {
@@ -92,5 +92,5 @@ export const search = async (req, res) => {
                 $regex: new RegExp(keyword, "i") } // 정규표현식!!
             })
     }
-    return res.render("search", { pageTitle: `Search Video by ${keyword}`, videos });
+    return res.render("search", { pageTitle: `Search Trailer by ${keyword}`, videos });
 }
