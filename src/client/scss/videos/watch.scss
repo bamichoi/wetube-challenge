@@ -1,0 +1,64 @@
+#watch_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  #watch_container {
+    box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
+    width: 55rem;
+    border: 1rem black solid;
+    padding: 1rem 2rem;
+    margin: 1rem 2rem 0rem;
+    border-radius: 2rem;
+    h1 {
+      font-family: "Londrina Solid", cursive;
+      font-size: 2rem;
+    }
+    #player {
+      display: flex;
+      justify-content: center;
+      height: 31rem;
+      display: flex;
+      justify-content: center;
+
+      video {
+        height: 100%;
+        width: 100%;
+      }
+    }
+    #info {
+      font-family: "Londrina Solid", cursive;
+      font-weight: 300;
+      margin-top: 2rem;
+      width: 100%;
+      span {
+        display: flex;
+        margin-bottom: 1rem;
+      }
+    }
+    div:last-child {
+      display: flex;
+      justify-content: flex-end;
+      a {
+        text-decoration: none;
+        margin-left: 1.2rem;
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: none;
+          font-family: "Londrina Solid", cursive;
+          width: 9rem;
+          padding: 0.2rem 0rem;
+          font-size: 1.2rem;
+          cursor: pointer;
+          .fa-edit {
+            color: $yellow;
+          }
+          .fa-trash-alt {
+            color: $red;
+          }
+        }
+      }
+    }
+  }
+}

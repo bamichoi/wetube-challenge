@@ -1,10 +1,21 @@
 extends base.pug
 
 block content
-    video(src="/" + video.videoUrl)
-    div
-        p=video.description
-        small=video.createdAt
-    a(href=`${video.id}/edit`) Edit Video &rarr;
-    br
-    a(href=`${video.id}/delete`) Delete Video &rarr;
+    div#watch_wrapper
+        div#watch_container
+            h1=video.title
+            hr
+            div#player
+                video(src="/" + video.videoUrl)
+            div#info
+                span=video.description
+                span=video.hashtags
+                span=video.createdAt
+            div
+                a(href=`${video.id}/edit`) 
+                    button Edit Video&nbsp;&nbsp;
+                        <i class="fas fa-edit"></i>
+                br
+                a(href=`${video.id}/delete`) 
+                    button Delete Video &nbsp;&nbsp;
+                        <i class="fas fa-trash-alt"></i>

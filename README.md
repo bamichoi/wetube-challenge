@@ -20,7 +20,7 @@ Videos router
 
 
 
-Wetube Challenge
+Wetube Challenge : No Spoiler(but only trailer)
 
 - [x] User Authentication (Login / Create Account)   
 - [x] Edit Profile
@@ -28,8 +28,9 @@ Wetube Challenge
 - [x] Video Upload
 - [x] Video Search
 - [x] Video Edit
-- [ ] Watch Video
+- [x] Watch Video
 - [ ] Javascript Video Player
+- [ ] Video List
 - [ ] Comment Section + Code Challenge
 
 - 사용하지 않는 AVATAR 삭제 
