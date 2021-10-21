@@ -2,6 +2,7 @@ doctype html
 html(lang="ko")
     head
         title #{pageTitle} | No Spoiler
+        link(rel="shortcut icon" href="#")
         link(rel="stylesheet" href="/assets/css/styles.css")
         link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous")
     body
@@ -10,7 +11,7 @@ html(lang="ko")
                 a(href="/")
                     div#side-bar_title
                         div
-                            img(src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetdrawings.com%2Fvectors%2Fpopcorn-vector-png-23.png&f=1&nofb=1")
+                            img(src="/uploads/logo.png" crossorigin="anonymous")
                             h1 No Spoiler
                         h2 but only trailer
                 div#side-bar_auth
@@ -51,6 +52,6 @@ html(lang="ko")
 
             main
                 block content
-            script(src="/assets/js/main.js")
-            block scripts
+    script(src="/assets/js/main.js")
+    block scripts
             

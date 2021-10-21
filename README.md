@@ -31,7 +31,9 @@ Wetube Challenge : No Spoiler(but only trailer)
 - [x] Watch Video
 - [ ] Javascript Video Player
 - [ ] Video List
+- [ ] View, Like
 - [ ] Comment Section + Code Challenge
 
 - 사용하지 않는 AVATAR 삭제 
 - 비디오레코드 허용안됬을때 핸들링
+- 컨트롤러 키입력

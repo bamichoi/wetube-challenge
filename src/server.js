@@ -22,8 +22,13 @@ app.use(session({
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
 }));
 app.use(localMiddleware);
+app.use((req, res, next) => {
+    res.header("Cross-Origin-Embedder-Policy", "require-corp");
+    res.header("Cross-Origin-Opener-Policy", "same-origin");
+    next();
+    });
 app.use("/uploads", express.static("uploads"));
-app.use("/assets", express.static("assets"));
+app.use("/assets", express.static("assets"), express.static("node_modules/@ffmpeg/core/dist"));
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
