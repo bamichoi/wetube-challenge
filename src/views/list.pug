@@ -1,0 +1,16 @@
+extends base
+include mixins/video
+
+block content
+    div.list_wrapper
+        div.list_title
+            h2 Trailers
+            hr
+        div.grid_container
+            div.video_grid
+                each video in videos
+                    +video(video)
+            
+
+                else 
+                    li Sorry nothing found

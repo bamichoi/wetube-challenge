@@ -2,9 +2,15 @@ extends base
 include mixins/video
 
 block content
-    form(method="GET")
-        input(placeholder="Search by title", type="text", name="keyword")
-        input(type="submit" value="search now") 
-
-    each video in videos
-        +video(video) 
+    div.list_wrapper
+            div.list_title
+                h2 Search
+                hr
+            div#search_form_container
+                form(method="GET" id="search_form")
+                    input(placeholder="Search by title", type="text", name="keyword")
+                    input(type="submit" value="Search") 
+            div.grid_container
+                div.video_grid
+                    each video in videos
+                        +video(video)

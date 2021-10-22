@@ -9,13 +9,22 @@ export const home = async (req, res) => {
     }
 }
 
+export const list = async (req, res) => {
+    try {
+        const videos = await Video.find({}).sort({ createdAt: "desc" })
+        return res.render("list", {pageTitle : "Trailers", videos });
+    } catch {
+        return res.render("server-error", {error});
+    }
+}
+
 export const watch = async (req, res) => {
     const { id } = req.params;
     const video = await Video.findById(id);
     if (!video) {
         return res.status(404).render("404", {pageTitle : "Video not found"})  
     } 
-    return res.render("watch", {pageTitle : `Watching ${video.title}`, video});
+    return res.render("watch", {pageTitle : `${video.title}`, video});
 
 } 
 export const getEdit = async (req, res) => {
