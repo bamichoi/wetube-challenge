@@ -5,7 +5,7 @@ block content
         div#watch_container
             h1=video.title
             hr
-            div#videoPlayer
+            div#videoPlayer(data-id=video._id)
                 video(src="/" + video.videoUrl)
                 div#videoController
                     button#play
@@ -26,14 +26,38 @@ block content
             div#info
                 span=video.description
                 span=video.hashtags
+                span=video.owner.username
                 span=video.createdAt
-            div
-                a(href=`${video.id}/edit`) 
-                    button Edit Video&nbsp;&nbsp;
-                        <i class="fas fa-edit"></i>
-                br
-                a(href=`${video.id}/delete`) 
-                    button Delete Video &nbsp;&nbsp;
-                        <i class="fas fa-trash-alt"></i>
+            if String(video.owner._id) === String(loggedInUser._id)
+                div
+                    a(href=`${video.id}/edit`) 
+                        button Edit Video&nbsp;&nbsp;
+                            <i class="fas fa-edit"></i>
+                    br  
+                    a(href=`${video.id}/delete`) 
+                        button Delete Video &nbsp;&nbsp;
+                            <i class="fas fa-trash-alt"></i>
+        if loggedIn
+            div#commentSection
+                h1
+                    span Comment  
+                    i(class="fas fa-comment-dots")
+                form#commentForm
+                    textarea(cols="60", rows="10", placeholder="Write a comment.")
+                    button Add Comment
+        div#commentContainer
+            ul
+                each comment in video.comments.reverse()
+                    li
+                        div.comment_writer
+                            span=comment.username
+                        div.comment_text
+                            div    
+                                span(data-id=comment._id) #{comment.text}
+                            if String(comment.writer._id) === String(loggedInUser._id)
+                                div.comment_delete
+                                    i(class="fas fa-times-circle")
+
 block scripts
     script(src="/assets/js/videoPlayer.js")
+    script(src="/assets/js/commentSection.js")

@@ -5,6 +5,7 @@ import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
+import apiRouter from "./routers/apiRouter";
 import { localMiddleware } from "./middlewares";
 
 const app = express();
@@ -32,9 +33,8 @@ app.use("/assets", express.static("assets"), express.static("node_modules/@ffmpe
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
+app.use("/api", apiRouter);
 
 
 export default app
 
-
-// Open Server Application

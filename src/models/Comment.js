@@ -2,13 +2,13 @@ import mongoose  from "mongoose";
 
 
 const commentSchema = new mongoose.Schema({
-    title: { type: String, required: true, trim: true, maxLength: 80},
     text: { type: String, required: true, trim: true,},
     writer:  { type: mongoose.Schema.Types.ObjectId, required:true, ref:"User" },
+    username: {type: String, required: true },
     video: {  type: mongoose.Schema.Types.ObjectId, required:true, ref:"Video" },
     createdAt: { type: Date, required: true, default: Date.now },
 });
 
-const Video = mongoose.model("Video", videoSchema);
+const Comment = mongoose.model("Comment", commentSchema);
 
-export default Video;
+export default Comment;

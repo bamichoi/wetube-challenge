@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   name: { type: String, required: true },
   avatar: { type: String, default:"uploads/avatars/default.jpeg"},
-  bio: {type: String, default:"Write your profile message."}
+  bio: {type: String, default:"Write your profile message."},
+  videos : [ { type: mongoose.Schema.Types.ObjectId, required:true, ref:"Video" } ],
 });
 
 userSchema.pre('save', async function() {
