@@ -6,7 +6,7 @@ block content
             h1=video.title
             hr
             div#videoPlayer(data-id=video._id)
-                video(src="/" + video.videoUrl)
+                video(src=video.videoUrl, crossorigin)
                 div#videoController
                     button#play
                         i(class="fas fa-play")

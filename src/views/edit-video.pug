@@ -15,7 +15,7 @@ block content
                         label(for="video") Video File
                         input(type="file", id="video", accept="video/*" name="video")
                         label Current Thumbnail
-                        img(src= "/" + `${video.thumbnailUrl}`, width="100", height="100")
+                        img(src=video.thumbnailUrl, crossorigin,  width="100", height="100")
                     div
                         label(for="title") Title
                         input(placeholder="Title", id="title", required, type="text", name="title", maxlength=80, value=video.title)

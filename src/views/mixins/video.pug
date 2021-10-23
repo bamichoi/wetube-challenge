@@ -1,7 +1,7 @@
 mixin video(video)
     div.video_card
         a(href=`/videos/${video.id}`)
-            div(class="video_card_thumbnail" style=`background-image:url(${ "/" + video.thumbnailUrl });`)
+            div(class="video_card_thumbnail" style=`background-image:url(${video.thumbnailUrl});`)
         div.video_card_title
                 span=video.title
         div.video_card_metaData

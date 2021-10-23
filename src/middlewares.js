@@ -1,4 +1,20 @@
 import multer from "multer";
+import multerS3 from "multer-s3";
+import aws from "aws-sdk";
+
+const s3 = new aws.S3({
+    credentials: {
+        accessKeyId: process.env.AWS_ID,
+        secretAccessKey: process.env.AWS_SECRET
+    }
+})
+
+const multerUploader = multerS3({
+    s3: s3,
+    bucket: 'no-spoiler',
+    acl: "public-read",
+});
+
 
 export const localMiddleware = (req, res, next) => {
     res.locals.loggedIn = Boolean(req.session.loggedIn);
@@ -23,7 +39,7 @@ export const logoutOnlyMiddleware = (req, res, next) => {
     }
 };
 
-const storage = multer.diskStorage({ destination : (req, file, cb) => {
+const dest = multer.diskStorage({ destination : (req, file, cb) => {
     if ( file.fieldname == 'thumbnail' ) {
         cb(null, 'uploads/thumbnails/');
     }
@@ -32,9 +48,9 @@ const storage = multer.diskStorage({ destination : (req, file, cb) => {
     }
 }});
 
-export const upload = multer({ storage });
+export const upload = multer({ dest, storage : multerUploader });
 
-export const uploadAvatar = multer ({ dest: "uploads/avatars/"});
+export const uploadAvatar = multer ({ dest: "uploads/avatars/", storage: multerUploader });
 
 
 /*

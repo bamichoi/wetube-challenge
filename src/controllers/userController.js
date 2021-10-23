@@ -39,7 +39,6 @@ export const postLogin = async (req, res) => {
     if (!match) {
         return res.status(400).render("login", { pageTitle, errorMessage:"Wrong password."});
     }
-    console.log(req.session)
     req.session.loggedIn = true;
     req.session.user = user;
     return res.redirect("/")
@@ -58,7 +57,8 @@ export const profile = async (req, res) => {
 
 
 export const getEdit = (req, res) => {
-    return res.render("edit-profile", { pageTitle : "Edit Profile"})
+    const user = req.session.user;
+    return res.render("edit-profile", { pageTitle : "Edit Profile", user})
 }
 
 export const postEdit = async (req, res) => {
@@ -72,18 +72,17 @@ export const postEdit = async (req, res) => {
     const user = await User.findById(_id);
     try {
         await User.findByIdAndUpdate(_id, {
-            avatar : file ? file.path : user.avatar,
+            avatar : file ? file.location : user.avatar,
             name,
             email,
             bio,    
         })
         req.session.user = {
             ...req.session.user,
-            avatar : file ? file.path : user.avatar,
+            avatar : file ? file.location : user.avatar,
             name,
             email,
             bio,  
-
         }
         return res.redirect(`/users/${_id}`)
     }

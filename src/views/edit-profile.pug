@@ -7,9 +7,9 @@ block content
             h1 Update Profile
             hr
             div(class="profile_info")
-                div(class="profile_avatar" style=`background-image:url(${ "/" + loggedInUser.avatar});`)
+                div(class="profile_avatar" style=`background-image:url(${user.avatar});` crossorigin)
             form(method="POST" enctype="multipart/form-data")
-                label(for="avatar") Avatar
+                label(for="avatar") Avatar  
                 input(type="file", id="avatar", name="avatar", accept="image/*")
                 label(for="name") Name
                 input(placeholder="Name", id="name" required, type="text", name="name", value=loggedInUser.name)

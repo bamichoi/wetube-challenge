@@ -47,7 +47,6 @@ export const postEdit = async (req, res) => {
     const  { user : { _id } } = req.session;
     const { title, description, hashtags } = req.body;
     const { file } = req;
-    console.log(req.body);
     const video = await Video.findById(id);
     if (!video) {
         return res.render("404", {pageTitle : "Video not found"})  
@@ -58,7 +57,7 @@ export const postEdit = async (req, res) => {
     try { 
         await Video.findByIdAndUpdate(id, {
         title, 
-        thumbnailUrl : file ? file.path : video.thumbnailUrl,
+        thumbnailUrl : file ? file.location : video.thumbnailUrl,
         description, 
         hashtags: Video.formatHashtags(hashtags)
     })
@@ -75,8 +74,8 @@ export const getUpload = (req, res) => {
   };
   
 export const postUpload = async (req, res) => {
-    const thumbnailUrl = req.files['thumbnail'][0].path
-    const videoUrl = req.files['video'][0].path
+    const thumbnailUrl = req.files['thumbnail'][0].location
+    const videoUrl = req.files['video'][0].location
     const { title, description, hashtags } = req.body;
     const { user: { _id } } = req.session;
     try { 
