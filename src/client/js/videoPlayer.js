@@ -1,3 +1,5 @@
+import regeneratorRuntime from "regenerator-runtime";
+
 const video = document.querySelector("video");
 const playBtn = document.getElementById("play");
 const playIco = playBtn.querySelector("i")
@@ -17,6 +19,12 @@ let controllerMovementTimeout = null;
 let volumeValue = 0.5;
 video.volume = volumeValue;
 
+const handleEnded = async () => {
+  const videoId = videoPlayer.dataset.id
+  await fetch(`/api/videos/${videoId}/view`, {
+    method : "POST"
+  });
+}
 
 const hideController = () => videoController.classList.remove("showing");
 
@@ -107,9 +115,10 @@ const handlePlayClick = () => {
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
-video.addEventListener("loadedmetadata", handleLoadedMetadata);
-video.addEventListener("timeupdate", handleTimeUpdate);
 timeline.addEventListener("input", handleTimelineChange);
 fullScreenBtn.addEventListener("click", handleFullscreen);
+video.addEventListener("loadedmetadata", handleLoadedMetadata);
+video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("mousemove", handleMouseMove);
 video.addEventListener("mouseleave", handleMouseLeave);
+video.addEventListener("ended", handleEnded);

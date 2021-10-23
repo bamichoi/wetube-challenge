@@ -76,6 +76,8 @@
       font-weight: 300;
       margin-top: 2rem;
       width: 100%;
+      display: flex;
+      flex-direction: column;
       span {
         display: flex;
         margin-bottom: 1rem;
@@ -169,6 +171,9 @@
       justify-content: flex-end;
       font-size: 1.5rem;
       color: #ed4721;
+      i {
+        cursor: pointer;
+      }
     }
   }
 }

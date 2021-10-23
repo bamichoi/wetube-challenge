@@ -37,26 +37,27 @@ block content
                     a(href=`${video.id}/delete`) 
                         button Delete Video &nbsp;&nbsp;
                             <i class="fas fa-trash-alt"></i>
-        if loggedIn
-            div#commentSection
-                h1
-                    span Comment  
-                    i(class="fas fa-comment-dots")
+        
+        div#commentSection
+            h1
+                span Comment  
+                i(class="fas fa-comment-dots")
+            if loggedIn
                 form#commentForm
                     textarea(cols="60", rows="10", placeholder="Write a comment.")
                     button Add Comment
         div#commentContainer
             ul
                 each comment in video.comments.reverse()
-                    li
+                    li(id=`${comment._id}`)
                         div.comment_writer
                             span=comment.username
                         div.comment_text
                             div    
-                                span(data-id=comment._id) #{comment.text}
+                                span #{comment.text}
                             if String(comment.writer._id) === String(loggedInUser._id)
                                 div.comment_delete
-                                    i(class="fas fa-times-circle")
+                                    i(class="fas fa-times-circle", data-id=comment._id)
 
 block scripts
     script(src="/assets/js/videoPlayer.js")

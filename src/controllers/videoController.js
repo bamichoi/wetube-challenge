@@ -4,7 +4,7 @@ import Comment from "../models/Comment";
 
 export const home = async (req, res) => {
     try {
-        const videos = await Video.find({}).sort({ createdAt: "desc" })
+        const videos = await Video.find({}).sort({ createdAt: "desc" }).populate("owner")
         return res.render("home", {pageTitle : "Home", videos });
     } catch {
         return res.render("server-error", {error});
@@ -31,15 +31,20 @@ export const watch = async (req, res) => {
 } 
 export const getEdit = async (req, res) => {
     const { id } = req.params;
+    const  { user : { _id } } = req.session;
     const video = await Video.findById(id);
     if (!video) {
         return res.status(404).render("404", {pageTitle : "Video not found"})  
     } 
+    if (String(video.owner) !== String(_id)) {
+        return res.status(403).redirect("/")
+    }
     res.render("edit-video", {pageTitle : `Editing ${video.title}`, video})
 } 
 
 export const postEdit = async (req, res) => {
     const { id } = req.params;
+    const  { user : { _id } } = req.session;
     const { title, description, hashtags } = req.body;
     const { file } = req;
     console.log(req.body);
@@ -47,6 +52,9 @@ export const postEdit = async (req, res) => {
     if (!video) {
         return res.render("404", {pageTitle : "Video not found"})  
     } 
+    if (String(video.owner) !== String(_id)) {
+        return res.status(403).redirect("/")
+    }
     try { 
         await Video.findByIdAndUpdate(id, {
         title, 
@@ -70,17 +78,21 @@ export const postUpload = async (req, res) => {
     const thumbnailUrl = req.files['thumbnail'][0].path
     const videoUrl = req.files['video'][0].path
     const { title, description, hashtags } = req.body;
-    const { user } = req.session
+    const { user: { _id } } = req.session;
     try { 
-        const video = await Video.create({
+        const newVideo = await Video.create({
             title,
             thumbnailUrl,
             videoUrl,
             description,
             hashtags: Video.formatHashtags(hashtags),
-            owner: user._id
-        })
-        return res.redirect(`/videos/${video.id}`);
+            owner: _id
+        });
+        const user = await User.findById(_id);
+        console.log(user);
+        user.videos.push(newVideo._id);
+        user.save();
+        return res.redirect(`/videos/${newVideo.id}`);
     }  catch(error) {
         console.log(error)
         return res.status(400).render("upload", { pageTitle: "Upload Video", errorMessage: error._message });
@@ -90,7 +102,18 @@ export const postUpload = async (req, res) => {
 
 export const deleteVideo = async (req, res) => {
     const { id } = req.params;
+    const  { user : { _id } } = req.session;
+    const video = await Video.findById(id);
+    if (!video) {
+        return res.status(404).redirect("/")
+    }
+    if (String(video.owner) !== String(_id)) {
+        return res.status(403).redirect("/")
+    }
+    const user = await User.findById(_id);
     await Video.findByIdAndDelete(id);
+    user.videos.splice(user.videos.indexOf(id), 1);
+    user.save();
     return res.redirect("/")
 }
 
@@ -124,8 +147,33 @@ export const createComment = async (req, res) => {
         username: user.username,
         video:id
     })
-    console.log(video);
     video.comments.push(comment._id);
-    video.save();
+    await video.save();
     return res.status(201).json({newCommentId:comment._id, writer:user.username});
+}
+
+
+export const deleteComment = async (req, res) => {
+    const { id } = req.params
+    const { user } = req.session
+    const comment = await Comment.findByIdAndDelete(id);
+    if (!comment){
+        return res.sendStatus(404);
+    }
+    if (String(comment.writer) !== user._id) {
+        return res.sendStatus(404);
+    }
+    return res.sendStatus(202);
+}
+
+
+export const registerView = async (req, res) => {
+    const { id } = req.params
+    const video = await Video.findById(id);
+    if(!video) {
+        return res.sendStatus(404)
+    }
+    video.meta.views += 1;
+    await video.save();
+    return res.sendStatus(202)
 }

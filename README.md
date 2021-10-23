@@ -31,15 +31,16 @@ Wetube Challenge : No Spoiler(but only trailer)
 - [x] Watch Video
 - [x] Javascript Video Player
 - [x] Video List
-- [ ] View, Like
+- [x] View
 - [x] Comment Section
-- [ ] delete comment
-- [ ] delete comment on fake comment
-- [ ] dlelte comment protect
+- [x] delete comment
+- [x] delete comment on fake comment
+- [x] dlelte comment protect
 - [x] username on comment
+- [x] owner
+
 
 - 사용하지 않는 AVATAR 삭제 
 - 비디오레코드 허용안됬을때 핸들링
 - 컨트롤러 키입력
--  home 정해진 개수만큼만 오브젝트 가지고 오기
--  비디오 날짜 포멧
+- home 정해진 개수만큼만 오브젝트 가지고 오기

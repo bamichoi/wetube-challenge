@@ -2,6 +2,19 @@ import regeneratorRuntime from "regenerator-runtime";
 
 const videoPlayer = document.getElementById("videoPlayer")
 const form = document.getElementById("commentForm");
+const deleteBtns =  document.getElementsByClassName("fa-times-circle")
+
+const handleDelete = async (e) => {
+    const deleteBtn = e.target
+    const commentId =  deleteBtn.dataset.id;
+    const commentLi = document.getElementById(`${commentId}`)
+    await fetch(`/api/videos/comment/${commentId}`, {
+        method : "DELETE"
+    })
+    commentLi.hidden = true;
+
+}
+
 
 const addComment = (text, id, writer) => {
     const videoComments = document.querySelector("#commentContainer ul");
@@ -22,11 +35,13 @@ const addComment = (text, id, writer) => {
     commentDelete.className = "comment_delete";
     const deleteIco = document.createElement("i");
     deleteIco.className = "fas fa-times-circle";
+    deleteIco.dataset.id  = id;
+    deleteIco.addEventListener("click", handleDelete);
     commentDelete.appendChild(deleteIco);
     commentText.appendChild(commentDelete);
     commentText.className = "comment_text";
+    newComment.id = id;
     newComment.appendChild(commentText);
-    newComment.dataset.id = id;
     videoComments.prepend(newComment);
 }
 
@@ -55,6 +70,15 @@ const handleSubmit = async (event) => {
     }
 }
 
+
+
+
+
 if (form) {
     form.addEventListener("submit", handleSubmit);
+}
+
+
+for (const deleteBtn of deleteBtns) {
+    deleteBtn.addEventListener("click", handleDelete);
 }

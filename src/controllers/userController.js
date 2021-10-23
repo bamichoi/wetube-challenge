@@ -23,8 +23,6 @@ export const postJoin = async (req, res) => {
     } catch(error) {
         return res.status(400).render("join", { pageTitle, errorMessage: error._message });
     }
-    
-
     return res.redirect("/login");
 }
 

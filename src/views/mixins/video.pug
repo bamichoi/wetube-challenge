@@ -1,11 +1,14 @@
 mixin video(video)
     div.video_card
-        div(class="video_card_thumbnail" style=`background-image:url(${ "/" + video.thumbnailUrl });`)
+        a(href=`/videos/${video.id}`)
+            div(class="video_card_thumbnail" style=`background-image:url(${ "/" + video.thumbnailUrl });`)
         div.video_card_title
-            a(href=`/videos/${video.id}`)
                 span=video.title
-        p=video.description
-        each hashtag in video.hashtags
-            span #{hashtag} &nbsp;
-        div.video_card_date
-            span=video.createdAt
+        div.video_card_metaData
+            a(href=`/users/${video.owner._id}`)
+                span by #{video.owner.username}
+            if video.meta.views === 1
+                span #{video.meta.views} view
+            else
+                span #{video.meta.views} views
+            span=video.createdAt.toDateString()
