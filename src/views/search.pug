@@ -11,6 +11,6 @@ block content
                     input(placeholder="Search by title", type="text", name="keyword")
                     input(type="submit" value="Search") 
             div.grid_container
-                div.video_grid
+                div.video_grid.list
                     each video in videos
                         +video(video)

@@ -45,3 +45,4 @@ Wetube Challenge : No Spoiler(but only trailer)
 - 컨트롤러 키입력
 - home 정해진 개수만큼만 오브젝트 가지고 오기
 - 업로더에 프사넣기. 와치부분 업로더 by삽입.
+- favicon
