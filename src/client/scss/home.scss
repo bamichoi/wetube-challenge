@@ -31,6 +31,9 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
+.list {
+  width: 60rem;
+}
 
 .video_card {
   font-family: "Londrina Solid", cursive;
