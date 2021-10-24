@@ -3,12 +3,13 @@ include mixins/video
 
 block content
     div#home_wrapper
-        div#home_title
-            h2 New Comming Soon
-        div.video_grid
-            each video in videos
-                +video(video)
-        
+        div#home_container
+            div#home_title
+                h2 New Comming Soon
+            div.video_grid
+                each video in videos
+                    +video(video)
+            
 
-            else 
-                li Sorry nothing found
+                else 
+                    li Sorry nothing found

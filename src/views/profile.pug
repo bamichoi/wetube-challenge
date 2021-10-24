@@ -7,7 +7,7 @@ block content
             h1 Profile
             hr
             div(class="profile_info")
-                div(class="profile_avatar" style=`background-image:url(${user.avatar});` crossorigin)
+                img(class="profile_avatar" src=`${user.avatar}` crossorigin)
                 ul
                     li Nickname: #{user.username}
                     li Name: #{user.name}
