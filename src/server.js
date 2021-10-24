@@ -29,7 +29,8 @@ app.use((req, res, next) => {
     "Origin, X-Requested-With, Content-Type, Accept" ); 
     next();
 });
-/*app.use((req, res, next) => {
+/*
+app.use((req, res, next) => {
     res.header("Cross-Origin-Embedder-Policy", "require-corp");
     res.header("Cross-Origin-Opener-Policy", "same-origin");
     next();
