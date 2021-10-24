@@ -23,19 +23,17 @@ app.use(session({
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
 }));
 app.use(localMiddleware);
-app.use((req, res, next) => { 
+/* app.use((req, res, next) => { 
     res.setHeader("Access-Control-Allow-Origin", "*"); 
     res.header( "Access-Control-Allow-Headers", 
     "Origin, X-Requested-With, Content-Type, Accept" ); 
-    next();
-}); // -> ffmpeg 레코드한 파일다운로드 불가.
-/*
+    next(); 
+}); */
 app.use((req, res, next) => {
-    res.header("Cross-Origin-Embedder-Policy", "require-corp");
+    res.header("Cross-Origin-Embedder-Policy", "require-corp"); 
     res.header("Cross-Origin-Opener-Policy", "same-origin");
     next();
-    });*/ /// -> cors 에러.
-
+    });
 app.use("/uploads", express.static("uploads"));
 app.use("/assets", express.static("assets"), express.static("node_modules/@ffmpeg/core/dist"));
 app.use("/", rootRouter);
