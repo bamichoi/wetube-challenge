@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   name: { type: String, required: true },
-  avatar: { type: String, default:"https://no-spoiler.s3.ap-northeast-2.amazonaws.com/default-1.jpeg"},
+  avatar: { type: String, default:"uploads/avatars/default.jpeg"},
   bio: {type: String, default:"Write your profile message."},
   videos : [ { type: mongoose.Schema.Types.ObjectId, required:true, ref:"Video" } ],
 });
