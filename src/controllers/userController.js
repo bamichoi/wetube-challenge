@@ -52,7 +52,7 @@ export const logout = (req, res) => {
 export const profile = async (req, res) => {
     const { id } = req.params;
     const user = await User.findById(id);
-    return res.render("Profile", { pageTitle : "Profile", user });
+    return res.render("profile", { pageTitle : "Profile", user });
 }
 
 
