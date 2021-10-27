@@ -104,7 +104,6 @@ const handleMuteClick = () => {
 const handlePlayClick = () => {
   if (video.paused) {
     video.play();
-    console.log(video.duration)
   } else {
     video.pause();
   }
@@ -118,7 +117,7 @@ muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
 timeline.addEventListener("input", handleTimelineChange);
 fullScreenBtn.addEventListener("click", handleFullscreen);
-video.addEventListener("loadedmetadata", handleLoadedMetadata);
+video.addEventListener("loadeddata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("mousemove", handleMouseMove);
 video.addEventListener("mouseleave", handleMouseLeave);
