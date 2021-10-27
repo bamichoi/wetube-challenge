@@ -38,6 +38,7 @@ Wetube Challenge : No Spoiler(but only trailer)
 - [x] dlelte comment protect
 - [x] username on comment
 - [x] owner
+- [ ] favicon
 
 
 - 사용하지 않는 AVATAR 삭제 
@@ -45,4 +46,4 @@ Wetube Challenge : No Spoiler(but only trailer)
 - 컨트롤러 키입력
 - home 정해진 개수만큼만 오브젝트 가지고 오기
 - 업로더에 프사넣기. 와치부분 업로더 by삽입.
-- favicon
+- favicon ->> cross-origin 때문에 s3에서 로딩안되서 static 폴더 새로 만들어서 억지로 넣음..
