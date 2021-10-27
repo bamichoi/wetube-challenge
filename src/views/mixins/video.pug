@@ -6,7 +6,9 @@ mixin video(video)
                 span=video.title
         div.video_card_metaData
             a(href=`/users/${video.owner._id}`)
-                span by #{video.owner.username}
+                img(class="user_avatar_sm" src=`${video.owner.avatar}` crossorigin)   
+                div 
+                    span &nbsp;#{video.owner.username}
             if video.meta.views === 1
                 span #{video.meta.views} view
             else

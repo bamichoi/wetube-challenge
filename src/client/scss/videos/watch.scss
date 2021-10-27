@@ -82,8 +82,27 @@
         display: flex;
         margin-bottom: 1rem;
       }
+      #uploader_link {
+        text-decoration: none;
+        color: black;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        div {
+          display: flex;
+          align-items: center;
+          span {
+            margin-bottom: 0rem;
+          }
+        }
+        .user_avatar_sm {
+          width: 1.8rem;
+          height: 1.8rem;
+          border-radius: 0.9rem;
+        }
+      }
     }
-    div:last-child {
+    #uploaderOnly {
       display: flex;
       justify-content: flex-end;
       a {

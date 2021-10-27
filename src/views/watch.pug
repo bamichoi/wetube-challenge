@@ -26,10 +26,13 @@ block content
             div#info
                 span=video.description
                 span=video.hashtags
-                span=video.owner.username
+                a(id="uploader_link" href=`/users/${video.owner._id}`)
+                    img(class="user_avatar_sm" src=`${video.owner.avatar}` crossorigin)
+                    div   
+                        span &nbsp;#{video.owner.username}
                 span=video.createdAt.toDateString()
             if String(video.owner._id) === String(loggedInUser._id)
-                div
+                div#uploaderOnly
                     a(href=`${video.id}/edit`) 
                         button Edit Video&nbsp;&nbsp;
                             <i class="fas fa-edit"></i>
