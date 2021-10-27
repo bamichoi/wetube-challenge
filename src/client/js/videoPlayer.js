@@ -63,7 +63,6 @@ const formatTime = (seconds) =>
   new Date(seconds * 1000).toISOString().substr(11, 8);
 
 const handleLoadedMetadata = () => {
-  console.log(video.duration)
   totalTime.innerText = formatTime(Math.floor(video.duration));
   timeline.max = Math.floor(video.duration);
 };
@@ -105,6 +104,7 @@ const handleMuteClick = () => {
 const handlePlayClick = () => {
   if (video.paused) {
     video.play();
+    console.log(video.duration)
   } else {
     video.pause();
   }
