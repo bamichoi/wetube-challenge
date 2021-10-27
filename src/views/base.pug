@@ -8,45 +8,46 @@ html(lang="ko")
     body
         div#wrapper
             header#side-bar
-                a(href="/")
-                    div#side-bar_title
-                        div
-                            img(src="https://no-spoiler.s3.ap-northeast-2.amazonaws.com/logo.png" crossorigin)
-                            h1 No Spoiler
-                        h2 but only trailer
-                div#side-bar_auth
-                    if !locals.loggedIn
+                div
+                    a(href="/")
+                        div#side-bar_title
                             div
-                                a(href="/join") 
+                                img(src="https://no-spoiler.s3.ap-northeast-2.amazonaws.com/logo.png" crossorigin)
+                                h1 No Spoiler
+                            h2 but only trailer
+                    div#side-bar_auth
+                        if !locals.loggedIn
+                                div
+                                    a(href="/join") 
                                         i(class="fas fa-sign-in-alt")
                                         span  Join
-                            div 
-                                a(href="/login")
-                                    i(class="fas fa-ticket-alt")
-                                    span  Login
-                    else    
-    
-                            div
-                                a(href=`/users/${loggedInUser._id}`) 
-                                        i(class="fas fa-id-badge")
-                                        span   Profile 
+                                div 
+                                    a(href="/login")
+                                        i(class="fas fa-ticket-alt")
+                                        span  Login
+                        else    
+        
+                                div
+                                    a(href=`/users/${loggedInUser._id}`) 
+                                            i(class="fas fa-id-badge")
+                                            span   Profile 
 
-                            div
-                                a(href="/users/logout")
-                                        i(class="fas fa-sign-in-alt")
-                                        span  Logout
-                
+                                div
+                                    a(href="/users/logout")
+                                            i(class="fas fa-sign-in-alt")
+                                            span  Logout
+                    
 
-                nav 
-                    ul
-                        if locals.loggedIn
+                    nav 
+                        ul
+                            if locals.loggedIn
+                                li
+                                    a(href="/videos/upload") Upload
+                                    
                             li
-                                a(href="/videos/upload") Upload
-                                  
-                        li
-                            a(href="/videos/") Trailers  
-                        li 
-                            a(href="/search") Search
+                                a(href="/videos/") Trailers  
+                            li 
+                                a(href="/search") Search
                 include partials/footer
                         
 
